@@ -151,16 +151,8 @@ const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOpt
 		},
 		"roo-cline.focusInput": async () => {
 			try {
-				const panel = getPanel()
-
-				if (!panel) {
-					await vscode.commands.executeCommand("workbench.view.extension.roo-cline-ActivityBar")
-				} else if (panel === tabPanel) {
-					panel.reveal(vscode.ViewColumn.Active, false)
-				} else if (panel === sidebarPanel) {
-					await vscode.commands.executeCommand(`${ClineProvider.sideBarId}.focus`)
-					provider.postMessageToWebview({ type: "action", action: "focusInput" })
-				}
+				await vscode.commands.executeCommand(`${ClineProvider.sideBarId}.focus`)
+				provider.postMessageToWebview({ type: "action", action: "focusInput" })
 			} catch (error) {
 				outputChannel.appendLine(`Error focusing input: ${error}`)
 			}
