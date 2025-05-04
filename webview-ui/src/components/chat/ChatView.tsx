@@ -36,7 +36,6 @@ import ChatRow from "./ChatRow"
 import ChatTextArea from "./ChatTextArea"
 import TaskHeader from "./TaskHeader"
 import AutoApproveMenu from "./AutoApproveMenu"
-import SystemPromptWarning from "./SystemPromptWarning"
 import { CheckpointWarning } from "./CheckpointWarning"
 
 export interface ChatViewProps {
@@ -80,7 +79,6 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		alwaysAllowSubtasks,
 		customModes,
 		telemetrySetting,
-		hasSystemPromptOverride,
 		historyPreviewCollapsed, // Added historyPreviewCollapsed
 	} = useExtensionState()
 
@@ -1217,12 +1215,6 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 						contextTokens={apiMetrics.contextTokens}
 						onClose={handleTaskCloseButtonClick}
 					/>
-
-					{hasSystemPromptOverride && (
-						<div className="px-3">
-							<SystemPromptWarning />
-						</div>
-					)}
 
 					{showCheckpointWarning && (
 						<div className="px-3">
