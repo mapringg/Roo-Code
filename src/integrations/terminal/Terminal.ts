@@ -16,7 +16,17 @@ export class Terminal extends BaseTerminal {
 		super("vscode", id, cwd)
 
 		const env = Terminal.getEnv()
-		const iconPath = new vscode.ThemeIcon("rocket")
+		const extension = vscode.extensions.getExtension("RooVeterinaryInc.roo-cline")
+		let iconPath: vscode.Uri | vscode.ThemeIcon
+
+		if (extension) {
+			iconPath = vscode.Uri.joinPath(extension.extensionUri, "assets", "icons", "panel_dark.png")
+		} else {
+			// Fallback if the extension isn't found
+			console.warn("Roo Code extension not found. Using default terminal icon.")
+			iconPath = new vscode.ThemeIcon("terminal") // Or any other default ThemeIcon
+		}
+
 		this.terminal = terminal ?? vscode.window.createTerminal({ cwd, name: "Roo Code", iconPath, env })
 
 		if (Terminal.getTerminalZdotdir()) {
