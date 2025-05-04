@@ -724,8 +724,6 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			}
 		})
 
-		const placeholderBottomText = `\n(${t("chat:addContext")}${shouldDisableImages ? `, ${t("chat:dragFiles")}` : `, ${t("chat:dragFilesImages")}`})`
-
 		return (
 			<div
 				className={cn(
@@ -920,9 +918,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 										"duration-200",
 										"ease-in-out",
 										textAreaDisabled ? "opacity-35" : "opacity-70",
-									)}>
-									{placeholderBottomText}
-								</div>
+									)}></div>
 							)}
 						</div>
 					</div>
